@@ -16,29 +16,118 @@ namespace itprime_test
     {
         static void Main(string[] args)
         {
-            Tredecimal myTredecimal = new Tredecimal();
+            //Tredecimal myTredecimal = new Tredecimal();
 
-            ulong beautyNumberCount = 0;
+            //ulong beautyNumberCount = 0;
+            //ulong beautyNumberCount2 = 0;
 
-            string maxTredecimalNumber = "111111";
+            //string maxTredecimalNumber = "9999";
 
-            for (int i = 0; i <= myTredecimal.ManySymbolTre2Dig(maxTredecimalNumber); i++)
+            //int numberT = 11;
+
+            //for (int i = 0; i < numberT; i++)
+            //{
+            //    for (int j = 0; j < numberT; j++)
+            //    {
+            //        if (SumOfNumbersInNumber(i) == SumOfNumbersInNumber(j))
+            //        {
+            //            beautyNumberCount++;
+
+            //        }
+            //    }
+            //}
+
+
+            //for (int i = 0; i < SumOfNumbersInNumber(numberT); i++)
+            //{
+            //    for (int j = 0; j <= numberT; j++)
+            //    {
+
+            //        if (SumOfNumbersInNumber(j) == i)
+            //        {
+            //            beautyNumberCount2++;
+            //            //Console.WriteLine("beaty numbers count is : " + beautyNumberCount2 + " j = " + j + " i= " + i);
+            //        }
+            //    }
+            //}
+
+            int N1 (int k)
             {
-                for (int j = 0; j <= myTredecimal.ManySymbolTre2Dig(maxTredecimalNumber); j++)
+                if (0 <= k && k <= 9 )
                 {
-                    if (SumOfNumbersInNumber(i) == SumOfNumbersInNumber(j))
-                    {
-                        beautyNumberCount++;
-                        //Console.WriteLine("i = " + i + " j = " + j);
-                    }
+                   return 1;
+                }
+                else
+                {
+                   return 0;
                 }
             }
 
-            Console.WriteLine("Amount of beaty numbers is : " + beautyNumberCount);
 
-            beautyNumberCount = beautyNumberCount * 12;
+            int N2 (int k)
+            {
+                int res = 0;
 
-            Console.WriteLine("Amount of beaty numbers is : " + beautyNumberCount);
+                for (int i = 0; i <= 9; i++)
+                {
+                    res = res + N1(k - i);
+                }
+
+                return res;
+            }
+
+            int N3(int k)
+            {
+                int res = 0;
+
+                for (int i = 0; i <= 9; i++)
+                {
+                    res = res + N2(k - i);
+                }
+
+                return res;
+            }
+
+
+            int N(int k, int n)
+            {
+                int res = 0;
+
+                if (n == 1)
+                {
+                    if (0 <= k && k <= 9)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+                for (int i = 1; i < n; i++)
+                {
+                    for (int j = 0; j <= 9; j++)
+                    {
+                        res = res + N(k - j, i) - N(k-j,i-1);
+                    }
+                }
+
+                return res;
+
+            }
+
+            int NNN = 24;
+
+
+            Console.WriteLine("Amount of beaty numbers2 is : " + 
+                 " N= " + N(NNN,3).ToString());
+
+            //beautyNumberCount = beautyNumberCount * 12;
+
+            //Console.WriteLine("Amount of beaty numbers is : " + beautyNumberCount);
+
+            //Console.WriteLine(myTredecimal.ManySymbolTre2Dig("110"));
         }
 
         static int SumOfNumbersInNumber(int number)
@@ -64,43 +153,43 @@ namespace itprime_test
             {
                 case "0":
                     return 0;
-                    break;
+                    
                 case "1":
                     return 1;
-                    break;
+                    
                 case "2":
                     return 2;
-                    break;
+                    
                 case "3":
                     return 3;
-                    break;
+                    
                 case "4":
                     return 4;
-                    break;
+                    
                 case "5":
                     return 5;
-                    break;
+                    
                 case "6":
                     return 6;
-                    break;
+                    
                 case "7":
                     return 7;
-                    break;
+                    
                 case "8":
                     return 8;
-                    break;
+                    
                 case "9":
                     return 9;
-                    break;
+                    
                 case "A":
                     return 10;
-                    break;
+                    
                 case "B":
                     return 11;
-                    break;
+                    
                 case "C":
                     return 12;
-                    break;
+
             }
             return 0;
         }
@@ -120,5 +209,4 @@ namespace itprime_test
         }
 
     }
-
 }
