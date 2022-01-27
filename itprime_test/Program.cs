@@ -16,86 +16,21 @@ namespace itprime_test
     {
         static void Main(string[] args)
         {
-            //Tredecimal myTredecimal = new Tredecimal();
+            ulong _answer = 0;
 
-            //ulong beautyNumberCount = 0;
-            //ulong beautyNumberCount2 = 0;
+            int _decimalSystem = 12; //cause count start from 0;
 
-            //string maxTredecimalNumber = "9999";
+            int _sumOfNumbers = 72; // 12 * 6
 
-            //int numberT = 11;
+            int _qntyOfNumbers = 12;
 
-            //for (int i = 0; i < numberT; i++)
-            //{
-            //    for (int j = 0; j < numberT; j++)
-            //    {
-            //        if (SumOfNumbersInNumber(i) == SumOfNumbersInNumber(j))
-            //        {
-            //            beautyNumberCount++;
-
-            //        }
-            //    }
-            //}
-
-
-            //for (int i = 0; i < SumOfNumbersInNumber(numberT); i++)
-            //{
-            //    for (int j = 0; j <= numberT; j++)
-            //    {
-
-            //        if (SumOfNumbersInNumber(j) == i)
-            //        {
-            //            beautyNumberCount2++;
-            //            //Console.WriteLine("beaty numbers count is : " + beautyNumberCount2 + " j = " + j + " i= " + i);
-            //        }
-            //    }
-            //}
-
-            int N1 (int k)
+            ulong BeautyfullNumberCount(int summOfNumbers, int qntyOfNumbers)
             {
-                if (0 <= k && k <= 9 )
+                ulong result = 0;
+
+                if (qntyOfNumbers == 1)
                 {
-                   return 1;
-                }
-                else
-                {
-                   return 0;
-                }
-            }
-
-
-            int N2 (int k)
-            {
-                int res = 0;
-
-                for (int i = 0; i <= 9; i++)
-                {
-                    res = res + N1(k - i);
-                }
-
-                return res;
-            }
-
-            int N3(int k)
-            {
-                int res = 0;
-
-                for (int i = 0; i <= 9; i++)
-                {
-                    res = res + N2(k - i);
-                }
-
-                return res;
-            }
-
-
-            int N(int k, int n)
-            {
-                int res = 0;
-
-                if (n == 1)
-                {
-                    if (0 <= k && k <= 9)
+                    if (0 <= summOfNumbers && summOfNumbers <= _decimalSystem)
                     {
                         return 1;
                     }
@@ -105,108 +40,22 @@ namespace itprime_test
                     }
                 }
 
-                for (int i = 1; i < n; i++)
+                for (int i = 1; i < qntyOfNumbers; i++)
                 {
-                    for (int j = 0; j <= 9; j++)
+                    for (int j = 0; j <= _decimalSystem; j++)
                     {
-                        res = res + N(k - j, i) - N(k - j, i - 1);
+                        result = result + BeautyfullNumberCount(summOfNumbers - j, i) - BeautyfullNumberCount(summOfNumbers - j, i - 1);
                     }
                 }
 
-                return res;
+                return result;
 
             }
 
-            int NNN = 36;
+            _answer = BeautyfullNumberCount(_sumOfNumbers, _qntyOfNumbers) * 13; // cause midle number can be any of 0-C;
 
+            Console.WriteLine("Amount of beatyfull numbers is : " + _answer.ToString());
 
-            Console.WriteLine("Amount of beaty numbers2 is : " + 
-                 " N= " + N(NNN,8).ToString());
-
-            //beautyNumberCount = beautyNumberCount * 12;
-
-            //Console.WriteLine("Amount of beaty numbers is : " + beautyNumberCount);
-
-            //Console.WriteLine(myTredecimal.ManySymbolTre2Dig("110"));
         }
-
-        static int SumOfNumbersInNumber(int number)
-        {
-            int sumOfNumbers = 0;
-
-            while (number > 0)
-            {
-                sumOfNumbers = sumOfNumbers + number % 10;
-                number = number / 10;
-            }
-
-            return sumOfNumbers;
-        }
-
-    }
-
-    public class Tredecimal
-    {
-        private int OneSymbolTre2Dig(string treNumber)
-        {
-            switch (treNumber)
-            {
-                case "0":
-                    return 0;
-                    
-                case "1":
-                    return 1;
-                    
-                case "2":
-                    return 2;
-                    
-                case "3":
-                    return 3;
-                    
-                case "4":
-                    return 4;
-                    
-                case "5":
-                    return 5;
-                    
-                case "6":
-                    return 6;
-                    
-                case "7":
-                    return 7;
-                    
-                case "8":
-                    return 8;
-                    
-                case "9":
-                    return 9;
-                    
-                case "A":
-                    return 10;
-                    
-                case "B":
-                    return 11;
-                    
-                case "C":
-                    return 12;
-
-            }
-            return 0;
-        }
-
-        public int ManySymbolTre2Dig(string treNumber)
-        {
-            int digitNumber = 0;
-            int oneSymbolLength = 1;
-            int powerDegreeDown = 1;
-
-            for (int i = 0; i < treNumber.Length; i++)
-            {
-                digitNumber = digitNumber + OneSymbolTre2Dig(treNumber.Substring(i, oneSymbolLength)) * (int)MathF.Pow(10, treNumber.Length - powerDegreeDown - i);
-            }
-
-            return digitNumber;
-        }
-
     }
 }
