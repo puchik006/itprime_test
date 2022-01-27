@@ -109,7 +109,7 @@ namespace itprime_test
                 {
                     for (int j = 0; j <= 9; j++)
                     {
-                        res = res + N(k - j, i) - N(k-j,i-1);
+                        res = res + N(k - j, i) - N(k - j, i - 1);
                     }
                 }
 
@@ -117,11 +117,11 @@ namespace itprime_test
 
             }
 
-            int NNN = 24;
+            int NNN = 36;
 
 
             Console.WriteLine("Amount of beaty numbers2 is : " + 
-                 " N= " + N(NNN,3).ToString());
+                 " N= " + N(NNN,8).ToString());
 
             //beautyNumberCount = beautyNumberCount * 12;
 
